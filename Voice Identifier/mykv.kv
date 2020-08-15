@@ -1,0 +1,74 @@
+WindowManager:
+    MainWindow:
+    newsound:
+    detect:
+<MainWindow>:
+    name: "main"
+    cols:1
+    FloatLayout:
+        Label:
+            text:"Welcome To The Voice Detection Learner"
+            size_hint:0.2,0.2
+            pos_hint:{"x":0.5,"top":0.9}
+        Button:
+            text:"New Voice? add it now"
+            pos_hint:{"x":0.3,"top":0.7}
+            size_hint:0.6,0.1
+            on_release:
+                app.root.current="record"
+                root.manager.transition.direction="right"
+        Button:
+            text:"Detection"
+            pos_hint:{"x":0.3,"top":0.5}
+            size_hint:0.6,0.1
+            on_release:
+                app.root.current="det"
+                root.manager.transition.direction="left"
+
+<newsound>:
+    name: "record"
+    nm: nm
+    cols:1
+    Label:
+        text:"we will add your sound features right now.\ndependecies:\n    1- check that its a quite place.\n  2- check that the microphone of the device is working proberly\n    3- do not stop untill recording finishes please :)\nP.S: Try to sing :)"
+    FloatLayout:
+        cols:2
+        Label:
+            text:"Enter your name"
+            pos_hint:{"x":0.4,"top":0.4}
+            
+        TextInput:
+            id: nm
+            size_hint:0.2,0.1
+            pos_hint:{"x":0.4,"top":0.4}
+            multiline: False
+    FloatLayout:
+        cols:2
+        Button:
+            size_hint:0.1,0.1
+            pos_hint:{"x":0.4,"top":0.3}
+            text:"Back"
+            on_release:
+                app.root.current="main"
+                root.manager.transition.direction="left"     
+        Button:
+            size_hint:0.1,0.1
+            pos_hint:{"x":0.3,"top":0.3}
+            text:"record"
+            on_release:
+                root.recording()
+<detect>:
+    name: "det"
+    FloatLayout:
+        cols:2
+        Label:
+            text:"starting the detection"
+            pos_hint:{"x":0.4,"top":0.4}
+            
+        Button:
+            size_hint:0.2,0.1
+            pos_hint:{"x":0.4,"top":0.4}
+            text:"Detect"
+            on_release:
+                root.det()
+            
